@@ -1,0 +1,5 @@
+Para consumir el archivo json se debe de ejecutar el comando de json-services 
+
+json-server --watch \src\data\usuarios.json
+
+http://localhost:{puerto}/usuarios

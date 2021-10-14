@@ -1,0 +1,64 @@
+<div class="m-3">
+    <div class="form-group row">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Buscar</span>
+            <input type="text" class="form-control" id="buscar" name="filterUsuario" placeholder="Ingrese nombre, apellido o correo..." [(ngModel)]="filterUsuario">
+        </div>
+      </div>
+</div>   
+
+    
+    <div class="row" *ngFor="let usuario of listUsuarios | filter:filterUsuario;let indice = index">
+        <div class="col-sm-3"></div>
+        <div class="card border-primary mb-3 col-sm-6">
+            <div class="card-header mt-3 text-primary">
+                <h5>{{ usuario.first_name }} {{ usuario.last_name }}</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm">
+                        <img src="{{ usuario.avatar }}" alt="Not found.">
+                    </div>
+                    <div class="col-sm">
+                        <strong>Email: </strong><span class="card-text">{{ usuario.email }}</span>
+                        <div>
+
+                            <button type="button" class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal" id="bmodal{{usuario.id}}" (mouseenter)="getId(usuario.id)">Ver detalle</button>      
+
+                            <div class="modal fade" id="detalleModal{{usuario.id}}" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header row">
+                                            <div class="col"></div>
+                                            <div class="col">
+                                                <img height="100%" width="100%" src="{{ usuario.avatar }}" alt="Not found.">
+                                            </div>
+                                            <div class="col"></div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="text-center">
+                                                <h5>{{ usuario.first_name }} {{ usuario.last_name }}</h5>
+                                            </div>
+                                        <p><strong>Documento:</strong> {{usuario.id}}</p>
+                                        <p><strong>Teléfono:</strong> {{usuario.phone}}</p>
+                                        <p><strong>Profesión:</strong> {{usuario.career}}</p>
+                                        <p><strong>País:</strong> {{usuario.country}}</p>
+                                        <p><strong>Ciudad:</strong> {{usuario.city}}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>   
+        <div class="col-sm-3"></div>         
+    </div>
+  
